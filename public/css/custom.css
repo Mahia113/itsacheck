@@ -1,0 +1,46 @@
+
+
+/*  ASIDE  */
+
+.aside-dimen{
+    height: 80%;
+    background-color: #1d68a7;
+}
+
+.aside-margin{
+
+    margin-top: 70px;
+    margin-bottom: 100px;
+
+}
+
+.aside-title-margin{
+    margin-bottom: 30px;
+}
+
+.wo-border{
+    border: 0;
+}
+
+.icon-margin{
+    margin-right: 40px;
+}
+
+
+/*
+Home content
+ */
+
+.margin-top-card{
+    margin-top: 25px;
+}
+
+
+
+.blue{
+    background-color: #1f6fb2;
+}
+
+.red{
+    background-color: red;
+}
