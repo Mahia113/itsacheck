@@ -42,11 +42,54 @@ class HomeController extends Controller
 
     public function getProfesorWithMoreInassistance(){
 
-        $profesorWithMoreInassistance = NoAssistance::withCount('profesors')            // Count the errors
-        ->orderBy('errors_count', 'desc')   // Order by the error count
-        ->take(5)                           // Take the first 5
-        ->get();
+        $profesorsWithMoreInassistances = NoAssistance::select('profesor_id')
+            ->where('assistance', false)
+            ->orderby('profesor_id')
+            ->get();
 
-        return $profesorWithMoreInassistance;
+        //return $profesorsWithMoreInassistances;
+
+        return  $this->checkInnasistances($profesorsWithMoreInassistances);
+    }
+
+    public function checkInnasistances($profesorsWithMoreInassistances){
+
+        $id = $profesorsWithMoreInassistances[0]->profesor_id;
+        $idaux = $id;
+        $contador = 0;
+        $contadorfinal = 0;
+        $profesor = 0;
+
+        foreach ($profesorsWithMoreInassistances as $valor) {
+            //echo $valor->profesor_id;
+
+            if($idaux == $valor->profesor_id){
+
+                $contador += 1;
+                $profesor = $valor->profesor_id;
+
+                if($contador > $contadorfinal){
+                    $profesor = $valor->profesor_id;
+                }
+
+            }
+
+            $idaux = $id;
+            $id =  $valor->profesor_id;
+
+            if($idaux != $valor->profesor_id){
+                $contadorfinal  = $contador;
+                $contador = 0;
+            }
+        }
+
+        echo $profesor;
+
+        $this->getProfesorById($profesor);
+
+    }
+
+    public function getProfesorById($profesor){
+        
     }
 }
