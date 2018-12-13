@@ -35,7 +35,32 @@ Home content
     margin-top: 25px;
 }
 
+.padding-card{
+    padding: 15px;
+}
 
+.degrado-rojo {
+    background: rgba(255,90,90,0.77);
+    background: -moz-linear-gradient(left, rgba(255,90,90,0.77) 0%, rgba(255,90,90,0.9) 55%, rgba(255,90,90,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,90,90,0.77)), color-stop(55%, rgba(255,90,90,0.9)), color-stop(100%, rgba(255,90,90,1)));
+    background: -webkit-linear-gradient(left, rgba(255,90,90,0.77) 0%, rgba(255,90,90,0.9) 55%, rgba(255,90,90,1) 100%);
+    background: -o-linear-gradient(left, rgba(255,90,90,0.77) 0%, rgba(255,90,90,0.9) 55%, rgba(255,90,90,1) 100%);
+    background: -ms-linear-gradient(left, rgba(255,90,90,0.77) 0%, rgba(255,90,90,0.9) 55%, rgba(255,90,90,1) 100%);
+    background: linear-gradient(to right, rgba(255,90,90,0.77) 0%, rgba(255,90,90,0.9) 55%, rgba(255,90,90,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5a5a', endColorstr='#ff5a5a', GradientType=1 );
+}
+
+/*
+GENERICOS
+ */
+
+.text-bold{
+    font-weight: bold;
+}
+
+.white-text{
+    color: white;
+}
 
 .blue{
     background-color: #1f6fb2;
@@ -44,3 +69,10 @@ Home content
 .red{
     background-color: red;
 }
+
+.margin-bottom-13px{
+    margin-bottom: 13.2px;
+}
+
+
+
