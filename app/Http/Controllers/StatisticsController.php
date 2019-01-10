@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Administrator;
 use App\Carrer;
 use App\Group;
 use App\NoAssistance;
@@ -26,7 +27,11 @@ class StatisticsController extends Controller
             ->with('totalGroupsWithFaults', $this->getTotalGroupsWithFaults())
             ->with('totalGroups', $this->getTotalGroups())
             ->with('carrerWithMoreFaults', $this->getCarrerWithMoreFaults())
-            ->with('profesorWithMoreFaultsByCarrer', $this->getProfesorWithMoreFaultsByCarrer());
+            ->with('profesorWithMoreFaultsByCarrer', $this->getProfesorWithMoreFaultsByCarrer())
+            ->with('totalSubjects', $this->getTotalSubjects())
+            ->with('totalCheckers', $this->getTotalCheckerss())
+            ->with('percentageOfFaults', $this->getPercentageOfFaults())
+            ->with('faultsOfCarrers', $this->getCarrerFaults());
     }
 
     public function getTotalFaults(){
@@ -167,4 +172,71 @@ class StatisticsController extends Controller
 
         return $profesor;
     }
+
+    public function getTotalSubjects(){
+        $totalSubject = Subject::all()->count();
+        return $totalSubject;
+    }
+
+    public function getTotalCheckerss(){
+        return Administrator::all()->count();
+    }
+
+    public function getPercentageOfFaults(){
+        $faults = $this->getTotalFaults();
+        $profesors = $this->getTotalRowsInNoAssistance();
+
+        return ($faults / $profesors) * 100;
+    }
+
+    public function getCarrerFaults(){
+        $ISIC = 0; $IINF = 0; $IBQA = 0; $ICIV = 0; $IGEM = 0; $IIAS = 0; $IIND = 0; $COP = 0;
+
+        $subjects = NoAssistance::select('subject_id')
+            ->where('assistance', false)
+            ->get();
+
+        foreach ($subjects as $subject => $value){
+            $subjectsIDs[] = "$value->subject_id";
+        }
+
+        $carrers = Subject::select('carrer_id')
+            ->whereIn('id', $subjectsIDs)
+            ->get();
+
+        foreach ($carrers as $carrer){
+
+            switch($carrer->carrer_id){
+                case 1:
+                    $ISIC += 1;
+                    break;
+                case 2:
+                    $IINF += 1;
+                    break;
+                case 3:
+                    $IBQA += 1;
+                    break;
+                case 4:
+                    $ICIV += 1;
+                    break;
+                case 5:
+                    $IGEM += 1;
+                    break;
+                case 6:
+                    $IIAS += 1;
+                    break;
+                case 7:
+                    $IIND += 1;
+                    break;
+                case 8:
+                    $COP += 1;
+                    break;
+            }
+        }
+
+        $carrersArrayValues = array($ISIC, $IINF, $IBQA, $ICIV, $IGEM, $IIAS, $IIND, $COP);
+
+        return $carrersArrayValues;
+    }
+
 }

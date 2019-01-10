@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'ITSA Dashboard') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -81,5 +81,28 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["ISIC", "IINF", "IBQA", "ICIV", "IGEM", "IIAS", "IIND", "COP"],
+                datasets: [{
+                    label: "Faltas por carrera",
+                    backgroundColor: ["rgba(255, 99, 132, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(152, 156, 164, 0.53)","rgba(255, 159, 64, 0.2)"],
+                    borderColor:["rgb(255, 99, 132)","rgb(201, 203, 207)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)", "rgb(255, 159, 64)"],
+                    borderWidth:1,
+                    data: ["{{$faultsOfCarrers[0]}}", "{{$faultsOfCarrers[1]}}", "{{$faultsOfCarrers[2]}}", "{{$faultsOfCarrers[3]}}", "{{$faultsOfCarrers[4]}}", "{{$faultsOfCarrers[5]}}", "{{$faultsOfCarrers[6]}}", "{{$faultsOfCarrers[7]}}"],
+                }]
+            },
+            options: {}
+        });
+
+    </script>
+
+
 </body>
 </html>

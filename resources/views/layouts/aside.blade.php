@@ -1,4 +1,4 @@
-<aside class="col-md-4 card">
+<aside class="col-md-3 card">
 
     <div class="col-md-10 mx-auto aside-margin">
 
