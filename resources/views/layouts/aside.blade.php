@@ -23,7 +23,7 @@
                 <i class="fas fa-user-friends icon-margin"></i>Usuarios
             </a>
 
-            <a class="list-group-item list-group-item-action wo-border" href="{{ route('home') }}">
+            <a class="list-group-item list-group-item-action wo-border" href="{{ route('profile.edit', Auth::user()->id) }}">
                 <i class="fas fa-user icon-margin"></i>Perfil
             </a>
 

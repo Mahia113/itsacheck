@@ -23,3 +23,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/statistics', 'StatisticsController@index')->name('statistics');
+
+//Route::get('/profile', 'ProfileController@index')->name('profile');
+
+//Route::post('/profile', 'ProfileController@update')->name('profile.update');
+
+Route::resource('profile', 'ProfileController');
+
+
