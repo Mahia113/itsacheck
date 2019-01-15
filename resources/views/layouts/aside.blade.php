@@ -19,8 +19,8 @@
                 <i class="fas fa-file-alt icon-margin"></i>Reportes
             </a>
 
-            <a class="list-group-item list-group-item-action wo-border" href="{{ route('home') }}">
-                <i class="fas fa-user-friends icon-margin"></i>Usuarios
+            <a class="list-group-item list-group-item-action wo-border" href="{{ route('checkers.index') }}">
+                <i class="fas fa-user-friends icon-margin"></i>Checadores
             </a>
 
             <a class="list-group-item list-group-item-action wo-border" href="{{ route('profile.edit', Auth::user()->id) }}">

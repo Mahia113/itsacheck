@@ -30,4 +30,7 @@ Route::get('/statistics', 'StatisticsController@index')->name('statistics');
 
 Route::resource('profile', 'ProfileController');
 
+Route::resource('checkers', 'CheckersController');
+
+
 
