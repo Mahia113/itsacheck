@@ -8,6 +8,7 @@ use App\Group;
 use App\NoAssistance;
 use App\Profesor;
 use App\Subject;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class StatisticsController extends Controller
@@ -237,6 +238,22 @@ class StatisticsController extends Controller
         $carrersArrayValues = array($ISIC, $IINF, $IBQA, $ICIV, $IGEM, $IIAS, $IIND, $COP);
 
         return $carrersArrayValues;
+    }
+
+    public function exportPDF(){
+
+        /*// Fetch all customers from database
+        $data = Administrator::all();
+
+        // Send data to the view using loadView function of PDF facade
+        $pdf = PDF::loadView('example', compact('data'));
+
+        // If you want to store the generated pdf to the server then you can use the store function
+        //$pdf->save(storage_path().'_filename.pdf');
+
+        // Finally, you can download the file using download function
+        return $pdf->stream('statics.pdf');*/
+
     }
 
 }

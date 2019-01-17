@@ -32,5 +32,4 @@ Route::resource('profile', 'ProfileController');
 
 Route::resource('checkers', 'CheckersController');
 
-
-
+Route::get('/statistics/export_pdf', 'StatisticsController@exportPDF')->name('export_pdf');

@@ -7,7 +7,7 @@
 
             @include('layouts.aside')
 
-            <div class="col-md-9">
+            <div class="col-md-9" id="capture">
 
                 <div class="row">
                     <div class="col-md-4">
@@ -73,7 +73,9 @@
                                             {{$profesorWithMoreFaultsByCarrer[0]->last_name2}}</b>.
                                     </h6>
 
-                                    <button type="button" class="btn btn-outline-primary btn-block margin-top-85px">GENERAR REPORTE</button>
+                                    <button class="btn btn-outline-primary btn-block margin-top-85px" role="button" href="" target="_blank" onclick="myFunction()">
+                                        GENERAR REPORTE
+                                    </button>
 
                                 </div>
 
@@ -167,6 +169,32 @@
             },
             options: {}
         });
+
+        function myFunction() {
+            html2canvas(document.querySelector("#capture")).then(canvas => {
+                document.body.appendChild(canvas)
+                var data = canvas.toDataURL();
+                createPDF(data)
+            });
+        }
+
+        function createPDF(data) {
+            var docDefinition = {
+                content: [{
+                    image: data,
+                    width: 600,
+                }],
+                pageOrientation: 'landscape',
+                pageMargins: [ 125, 40, 60, 40 ]//left, top, right, bottom
+            };
+
+            pdfMake.createPdf(docDefinition).download("Estadisticas_reporte");
+
+            setTimeout(function () {
+                location.reload();
+            }, 300);
+
+        }
 
     </script>
 
