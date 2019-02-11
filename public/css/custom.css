@@ -70,6 +70,10 @@ GENERICOS
     background-color: red;
 }
 
+.yellow{
+    background-color: yellow;
+}
+
 .margin-bottom-13px{
     margin-bottom: 13.2px;
 }
@@ -88,6 +92,10 @@ GENERICOS
 
 .margin-top-15px{
     margin-top: 15px;
+}
+
+.margin-top-40px{
+    margin-top: 40px;
 }
 
 .margin-top-85px{

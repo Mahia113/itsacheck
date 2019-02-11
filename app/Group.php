@@ -14,7 +14,7 @@ class Group extends Model
      * @var array
      */
     protected $fillable = [
-        'letter', 'number'
+        'letter', 'number', 'carrer_id', 'turn_id', 'user_id'
     ];
 
 }

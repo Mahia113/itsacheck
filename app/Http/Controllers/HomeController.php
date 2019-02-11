@@ -134,7 +134,7 @@ class HomeController extends Controller
         return $rows;
     }
 
-    private function getCarrer()
+    public function getCarrer()
     {
         $profesor = $this->getProfesorWithMoreInassistance();
 

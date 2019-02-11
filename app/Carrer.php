@@ -12,7 +12,7 @@ class Carrer extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'key', 'alias'
+        'id','name', 'key', 'alias'
     ];
 
     public $timestamps = false;

@@ -242,7 +242,7 @@ class StatisticsController extends Controller
 
     public function exportPDF(){
 
-        /*// Fetch all customers from database
+        // Fetch all customers from database
         $data = Administrator::all();
 
         // Send data to the view using loadView function of PDF facade
@@ -252,7 +252,7 @@ class StatisticsController extends Controller
         //$pdf->save(storage_path().'_filename.pdf');
 
         // Finally, you can download the file using download function
-        return $pdf->stream('statics.pdf');*/
+        return $pdf->stream('statics.pdf');
 
     }
 

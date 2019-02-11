@@ -64,14 +64,14 @@
                                     
                                     <div class="row">
 
-                                        <div class="col-md-4">
-                                            Faltas:<br>{{ $fault }}
+                                        <div class="col-md-4 text-center">
+                                            Faltas<br>{{ $fault }}
                                         </div>
-                                        <div class="col-md-4">
-                                            Asistencia:<br>{{ $assistence }}
+                                        <div class="col-md-5 text-center">
+                                            Asistencia<br>{{ $assistence }}
                                         </div>
-                                        <div class="col-md-4">
-                                            Total:<br>{{ $total }}
+                                        <div class="col-md-3 text-center">
+                                            Total<br>{{ $total }}
                                         </div>
                                         
                                     </div>

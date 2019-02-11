@@ -21,10 +21,12 @@ class Group extends Migration
             $table->timestamps();
             $table->unsignedInteger('turn_id');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('carrer_id');
 
         });
 
         Schema::table('groups', function($table) {
+            $table->foreign('carrer_id')->references('id')->on('carrers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('turn_id')->references('id')->on('turns');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });

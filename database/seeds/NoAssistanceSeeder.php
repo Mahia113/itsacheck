@@ -26,9 +26,9 @@ class NoAssistanceSeeder extends Seeder
         $profesors = Profesor::all()->pluck('id');
 
         // And now let's generate a few dozen groups for our app:
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             NoAssistance::create([
-                'assistance' => $faker->boolean($chanceOfGettingTrue = 50),
+                'assistance' => $faker->boolean($chanceOfGettingTrue = 70),
                 'time_registered' => $faker->time($format = 'H:i:s', $max = 'now'),
 
                 'schedule_id' => $faker->randomElement($schedules),

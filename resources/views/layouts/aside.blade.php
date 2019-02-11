@@ -15,7 +15,7 @@
                 <i class="fas fa-poll icon-margin"></i>Estadisticas
             </a>
 
-            <a class="list-group-item list-group-item-action wo-border" href="{{ route('home') }}">
+            <a class="list-group-item list-group-item-action wo-border" href="{{ route('reports.index') }}">
                 <i class="fas fa-file-alt icon-margin"></i>Reportes
             </a>
 

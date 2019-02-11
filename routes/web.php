@@ -32,4 +32,16 @@ Route::resource('profile', 'ProfileController');
 
 Route::resource('checkers', 'CheckersController');
 
-Route::get('/statistics/export_pdf', 'StatisticsController@exportPDF')->name('export_pdf');
+Route::resource('reports', 'ReportsController');
+
+
+Route::post('/reports/group', 'ReportsController@getGroupById')->name('select_to_group');
+
+Route::post('/reports/profesor', 'ReportsController@getProfesorById')->name('select_to_profesor');
+
+Route::post('/reports/pdf/general', 'ReportsController@generatePDFGeneral')->name('generate_pdf_general');
+
+Route::post('/reports/pdf/bycarrer', 'ReportsController@generatePDFCarrer')->name('generate_pdf_carrer');
+
+Route::post('/reports/pdf/bygroup', 'ReportsController@generatePDFGroup')->name('generate_pdf_group');
+

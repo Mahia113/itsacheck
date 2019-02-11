@@ -182,10 +182,10 @@
             var docDefinition = {
                 content: [{
                     image: data,
-                    width: 600,
+                    width: 700,
                 }],
                 pageOrientation: 'landscape',
-                pageMargins: [ 125, 40, 60, 40 ]//left, top, right, bottom
+                pageMargins: [ 100, 40, 60, 40 ]//left, top, right, bottom
             };
 
             pdfMake.createPdf(docDefinition).download("Estadisticas_reporte");
