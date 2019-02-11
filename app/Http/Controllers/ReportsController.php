@@ -335,7 +335,7 @@ class ReportsController extends Controller
             $subjectsIDsWithFaults[] = "$valueFault->subject_id";
         }
 
-        /*$carrer_faults = Subject::select('id')
+        $carrer_faults = Subject::select('id')
             ->where('group_id', $group_id)
             ->whereIn('id', $subjectsIDsWithFaults)
             ->get();
@@ -346,9 +346,9 @@ class ReportsController extends Controller
 
         $times = Schedule::select('time_start')
             ->whereIn('subject_id', $ids)
-            ->get();*/
+            ->get();
 
-        /*$minusTen = 0;
+        $minusTen = 0;
         $majorTenMinusThirteen = 0;
         $majorThirteen = 0;
 
@@ -374,9 +374,128 @@ class ReportsController extends Controller
             }
         }
 
-        $timesCleaned = ['minusToTen'=> $minusTen, 'majorToTenAndMinusToThirteen' => $majorTenMinusThirteen, 'majorToThirteen' => $majorThirteen, 'timesTotal' => $times];*/
+        $timesCleaned = ['minusToTen'=> $minusTen, 'majorToTenAndMinusToThirteen' => $majorTenMinusThirteen, 'majorToThirteen' => $majorThirteen, 'timesTotal' => $times];
 
-        return response()->json($subjectsWithFaults);
+        return $timesCleaned;
+    }
+
+    public function generatePDFProfessor(Request $request){
+
+        $professor_id = $request->professor;
+
+        return response()->json(['professorData'=>$this->professorData($professor_id), 'professorFaults'=>$this->professorFaults($professor_id),
+                                    'professorAssistances'=>$this->professorAssistances($professor_id),
+                                        'professorTotalRows'=>$this->professorTotalRows($professor_id),
+                                            'professorSchedulesFaultsData'=>$this->professorSchedulesFaultsData($professor_id)]);
+    }
+
+    public function professorData($professor_id){
+        $profesor = Profesor::select('first_name', 'last_name', 'last_name2', 'key', 'carrer_id')
+            ->where('id', $professor_id)
+            ->get();
+
+        $carrer = Carrer::select('name', 'alias', 'key')
+            ->where('id', $profesor[0]->carrer_id)
+            ->get();
+
+        $professorData = ['professor'=>$profesor, 'carrer'=>$carrer];
+
+        return $professorData;
+    }
+
+    public function professorTotalRows($professor_id){
+        $total = $this->professorAssistances($professor_id) + $this->professorFaults($professor_id);
+        return $total;
+    }
+
+    public function professorFaults($professor_id){
+
+        $totalFaults = NoAssistance::select('subject_id')
+            ->where('assistance', false)
+            ->get();
+
+        foreach ($totalFaults as $subject => $valueFault){
+            $subjectsIDsWithFaults[] = "$valueFault->subject_id";
+        }
+
+        $professor_faults = Subject::select('id', 'name', 'carrer_id')
+            ->where('profesor_id', $professor_id)
+            ->whereIn('id', $subjectsIDsWithFaults)
+            ->count();
+
+        return $professor_faults;
+    }
+
+    public function professorAssistances($professor_id){
+
+        $totalAssistances = NoAssistance::select('subject_id')
+            ->where('assistance', true)
+            ->get();
+
+        foreach ($totalAssistances as $subject => $valueFault){
+            $subjectsIDsWithAssistances[] = "$valueFault->subject_id";
+        }
+
+        $professor_assistances = Subject::select('id', 'name', 'carrer_id')
+            ->where('profesor_id', $professor_id)
+            ->whereIn('id', $subjectsIDsWithAssistances)
+            ->count();
+
+        return $professor_assistances;
+    }
+
+    public function professorSchedulesFaultsData($professor_id){
+
+        $subjectsWithFaults = NoAssistance::select('subject_id','assistance')
+            ->where('assistance', false)
+            ->get();
+
+        foreach ($subjectsWithFaults as $subject => $valueFault){
+            $subjectsIDsWithFaults[] = "$valueFault->subject_id";
+        }
+
+        $professor_faults = Subject::select('id')
+            ->where('profesor_id', $professor_id)
+            ->whereIn('id', $subjectsIDsWithFaults)
+            ->get();
+
+        foreach ($professor_faults as $id => $valueid){
+            $ids[] = $valueid->id;
+        }
+
+        $times = Schedule::select('time_start')
+            ->whereIn('subject_id', $ids)
+            ->get();
+
+        $minusTen = 0;
+        $majorTenMinusThirteen = 0;
+        $majorThirteen = 0;
+
+        foreach ($times as $time => $value_time){
+
+            $currentTime = $value_time->time_start;
+
+            $ten = date("10:00:00");
+            $thirteen = date("13:00:00");
+
+            switch ($currentTime){
+                case ($currentTime <= $ten):
+                    $minusTen = $minusTen +1;
+                    break;
+
+                case ($currentTime > $ten && $currentTime < $thirteen):
+                    $majorTenMinusThirteen = $majorTenMinusThirteen+1;
+                    break;
+
+                case ($currentTime >= $thirteen):
+                    $majorThirteen =$majorThirteen +1;
+                    break;
+            }
+        }
+
+        $timesCleaned = ['minusToTen'=> $minusTen, 'majorToTenAndMinusToThirteen' => $majorTenMinusThirteen, 'majorToThirteen' => $majorThirteen, 'timesTotal' => $times];
+
+        return $timesCleaned;
     }
 }
 

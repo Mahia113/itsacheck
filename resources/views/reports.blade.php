@@ -152,16 +152,15 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <select class="custom-select" id="profesor1">
-                                                <option selected>Selecciona un profesor</option>
-                                                <option value="1">Actual</option>
+                                            <select class="custom-select" id="professor">
+                                                <option selected value="99">Selecciona un profesor</option>
                                             </select>
                                         </div>
 
                                         <div class="col-md-6 margin-top-15px">
-                                            <select class="custom-select">
-                                                <option selected>Selecciona un período</option>
-                                                <option value="1">Actual</option>
+                                            <select class="custom-select" id="period4">
+                                                <option selected value="99">Selecciona un período</option>
+                                                <option value="100">Actual</option>
                                             </select>
                                         </div>
                                     </div>
@@ -169,7 +168,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <button type="button" class="btn btn-primary btn-block">Generar reporte</button>
+                                    <button id="buttonReportByProfessor" type="button" class="btn btn-primary btn-block">Generar reporte</button>
                                 </div>
 
                             </div>
@@ -185,7 +184,7 @@
 
     </div>
 
-    <div id="container1" style="width: 890px; display: none;">
+    <div id="container1" class="margin-top-130px" style="width: 890px; display: none;">
         <div id="layout_general" class="container">
 
             <div class="row align-items-center">
@@ -294,7 +293,7 @@
         </div>
     </div>
 
-    <div id="container2" style="width: 890px; display: none;">
+    <div id="container2" class="margin-top-130px" style="width: 890px; display: none;">
         <div id="layout_general" class="container">
 
             <div class="row align-items-center">
@@ -365,7 +364,7 @@
         </div>
     </div>
 
-    <div id="container3" style="width: 890px; display: block;">
+    <div id="container3" class="margin-top-130px" style="width: 890px; display: none;">
         <div id="layout_general" class="container">
 
             <div class="row align-items-center">
@@ -388,7 +387,7 @@
                 </div>
                 <div class="col-md-5 offset-1">
                     <div class="text-right">
-                        <h6 id="cabeza_fecha2" class="">Apatzingán, Mich. a 20 de Febrero 2019</h6>
+                        <h6 id="cabeza_fecha3" class="">Apatzingán, Mich. a 20 de Febrero 2019</h6>
                     </div>
                 </div>
             </div>
@@ -427,7 +426,76 @@
 
                 <div class="col-md-10 offset-1 margin-top-10px">
                     <h5>Horarios mas frecuentes</h5>
-                    <canvas id="static_carrer_line" style="height: 700px;"></canvas>
+                    <canvas id="static_group_line" style="height: 700px;"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="container4" class="margin-top-130px" style="width: 890px; display: none;">
+        <div id="layout_general" class="container">
+
+            <div class="row align-items-center">
+                <div class="col-md-2 align-self-center">
+                    <img src="/img/logo_itsa.png" alt="logo" class="img-fluid" width="100px" height="100px">
+                </div>
+                <div class="col-md-8">
+                    <h3 class="text-center">Instituto Tecnológico Superior de Apatzingán</h3>
+                </div>
+                <div class="col-md-2">
+                    <div class="text-right">
+                        <img src="/img/logo_itsa.png" alt="logo" class="img-fluid" width="100px" height="100px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-top-card">
+                <div class="col-md-4 offset-1">
+                    <h6>Reporte de un profesor</h6>
+                </div>
+                <div class="col-md-5 offset-1">
+                    <div class="text-right">
+                        <h6 id="cabeza_fecha4" class="">Apatzingán, Mich. a 20 de Febrero 2019</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-top-card">
+                <div id="" class="col-md-10 offset-1">Datos generales del profesor</div>
+
+                <div class="col-md-6 offset-1">
+                    <div class="row margin-top-card">
+                        <div id="cont4-carrer" class="col-md-12">Carrera: </div>
+                        <div id="cont4-alias" class="col-md-12">Alias: </div>
+                        <div id="cont4-key" class="col-md-12">Clave:</div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 offset-1">
+                    <div class="row margin-top-card">
+                        <div id="cont4-professor-name" class="col-md-12">Profesor: Jose luis Lopez Arreguin</div>
+                        <div id="cont4-professor-key" class="col-md-12">Clave: AHK-113</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row margin-top-card">
+
+                <div class="col-md-10 offset-1 margin-top-10px">
+                    <h5>Estadisticas generales del profesor</h5>
+                    <canvas id="static_professor_donut" style="height: 700px;"></canvas>
+                </div>
+
+            </div>
+
+            <div class="row margin-top-card">
+
+                <div class="col-md-10 offset-1 margin-top-10px">
+                    <h5>Horarios mas frecuentes</h5>
+                    <canvas id="static_professor_line" style="height: 700px;"></canvas>
                 </div>
 
             </div>
@@ -446,6 +514,8 @@
         byCarrierReport();
 
         byGroupReport();
+
+        byProfessorReport();
 
 
         //Initial Functions
@@ -484,8 +554,8 @@
             $('#carrier3').on('change', function(e) {
                 var carrer_id = e.target.value;
 
-                $("#profesor1").empty();
-                $("#profesor1").append(`<option selected value="0">Selecciona un profesor</option>`);
+                $("#professor").empty();
+                $("#professor").append(`<option selected value="0">Selecciona un profesor</option>`);
 
                 $.ajaxSetup({
                     headers: {
@@ -501,7 +571,7 @@
                     success:function(data){
                         //console.log(data.profesors);
                         data.profesors.forEach(profesor =>
-                            $('#profesor1').append(`<option value="${profesor.id}">${profesor.first_name+' '+profesor.last_name+' '+profesor.last_name2}</option>`)
+                            $('#professor').append(`<option value="${profesor.id}">${profesor.first_name+' '+profesor.last_name+' '+profesor.last_name2}</option>`)
                         )
                     }
 
@@ -515,6 +585,8 @@
             var months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
             document.getElementById("cabeza_fecha").innerHTML = "Apatzingán, Mich. a "+d.getDate()+" de "+months[d.getMonth()]+" del "+d.getFullYear();
             document.getElementById("cabeza_fecha2").innerHTML = "Apatzingán, Mich. a "+d.getDate()+" de "+months[d.getMonth()]+" del "+d.getFullYear();
+            document.getElementById("cabeza_fecha3").innerHTML = "Apatzingán, Mich. a "+d.getDate()+" de "+months[d.getMonth()]+" del "+d.getFullYear();
+            document.getElementById("cabeza_fecha4").innerHTML = "Apatzingán, Mich. a "+d.getDate()+" de "+months[d.getMonth()]+" del "+d.getFullYear();
 
         }
 
@@ -764,14 +836,15 @@
                             console.log(data);
 
                             renderSubHeader(data.groupData);
-
                             renderGraphicDonut2(data);
-                            //renderGraphicLine2(data);
-                            //showContainer("#container3", "reporte_grupo_", );
+                            renderGraphicLine2(data);
+                            showContainer("#container3", "reporte_grupo_"+data.groupData.carrer_alias, );
                         },
                         error: function (xhr, ajaxOptions, thrownError) {
-                            console.log(xhr.status);
-                            console.log(thrownError);
+                            //console.log(xhr.status);
+                            //console.log(thrownError);
+                            console.log("Lo sentimos este grupo no tiene datos registrados.");
+                            alert("Lo sentimos este grupo no tiene datos registrados.");
                         }
                     });
                 }
@@ -806,7 +879,7 @@
                         labels: ["Asistencias " + assistences + "%", "Faltas " + faults + "%"],
                         datasets: [{
                             backgroundColor: ["rgb(53,144,243)", "rgb(240,84,79)"],
-                            data: [data.carrersAssistances, data.carrersFaults]
+                            data: [data.groupAssistances, data.groupFaults]
                         }]
                     },
                     options: {
@@ -821,9 +894,9 @@
 
             function renderGraphicLine2(data) {
 
-                var ctxStaticsCarrersLine = document.getElementById('static_carrer_line').getContext('2d');
+                var ctxStaticsGroupLine = document.getElementById('static_group_line').getContext('2d');
 
-                var myLineChart = new Chart(ctxStaticsCarrersLine, {
+                var myLineChart = new Chart(ctxStaticsGroupLine, {
                     type: 'line',
                     data: {
                         labels: ["0 <","00:07 - 10:00", "10:00 - 13:00", "13:00 >"],
@@ -831,7 +904,8 @@
                             label: 'Faltas',
                             backgroundColor: 'rgb(53,144,243)',
                             borderColor: 'rgb(53,144,243)',
-                            data: [0, data.minusToTen, data.majorToTenAndMinusToThirteen, data.majorToThirteen, (data.majorToThirteen + 1)],
+                            data: [0, data.groupSchedulesFaultsData.minusToTen, data.groupSchedulesFaultsData.majorToTenAndMinusToThirteen,
+                                data.groupSchedulesFaultsData.majorToThirteen, (data.groupSchedulesFaultsData.majorToThirteen - 1)],
                             fill: false,
                         }]
                     },
@@ -869,6 +943,135 @@
                 });
             }
         }
+
+        function byProfessorReport(){
+            $(document).on('click', "#buttonReportByProfessor", function () {
+
+                var e = document.getElementById("period4");
+                var e2 = document.getElementById("carrier3");
+                var e3 = document.getElementById("professor");
+
+                var periodSelected = e.options[e.selectedIndex].value;
+                var carrierSelected = e2.options[e2.selectedIndex].value;
+                var professorSelected = e3.options[e3.selectedIndex].value;
+
+                if (periodSelected != 99 && carrierSelected != 99 && professorSelected != 99) {
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        type: 'POST',
+                        url: '/reports/pdf/byprofessor',
+                        data: {period: periodSelected, carrier: carrierSelected, professor:professorSelected},
+                        success: function (data) {
+                            console.log(data.professorSchedulesFaultsData);
+
+                            renderSubHeader(data.professorData);
+                            renderGraphicDonut3(data);
+                            renderGraphicLine3(data);
+                            showContainer("#container4", "reporte_profesor_"+data.professorData.professor[0].key);
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            //console.log(xhr.status);
+                            //console.log(thrownError);
+                            console.log("Lo sentimos este profesor no tiene datos registrados.");
+                            alert("Lo sentimos este profesor no tiene datos registrados.");
+                        }
+                    });
+                }
+            });
+
+            function renderSubHeader(professorData){
+                //set data to general information
+                document.getElementById("cont4-carrer").innerHTML = "<b>Carrera:</b> " + professorData.carrer[0].name;
+                document.getElementById("cont4-alias").innerHTML = "<b>Alias:</b> " + professorData.carrer[0].alias;
+                document.getElementById("cont4-key").innerHTML = "<b>Clave:</b> " + professorData.carrer[0].key;
+
+                document.getElementById("cont4-professor-name").innerHTML = "<b>Nombre: </b>" + professorData.professor[0].first_name+" "+professorData.professor[0].last_name+" "+professorData.professor[0].last_name2;
+                document.getElementById("cont4-professor-key").innerHTML = "<b>Clave: </b>" + professorData.professor[0].key;
+            }
+
+            function renderGraphicDonut3(data) {
+                //procesing data
+                let faults = Math.round((data.professorFaults / data.professorTotalRows) * 100);
+                let assistences = Math.round((data.professorAssistances / data.professorTotalRows) * 100);
+
+                //render canvas
+                var ctxStaticsProfessorDonut = document.getElementById('static_professor_donut').getContext('2d');
+                var myDoughnutChart = new Chart(ctxStaticsProfessorDonut, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ["Asistencias " + assistences + "%", "Faltas " + faults + "%"],
+                        datasets: [{
+                            backgroundColor: ["rgb(53,144,243)", "rgb(240,84,79)"],
+                            data: [data.professorAssistances, data.professorFaults]
+                        }]
+                    },
+                    options: {
+                        animation: {
+                            onComplete: function () {
+                                isChartRendered = false
+                            }
+                        }
+                    }
+                });
+            }
+
+            function renderGraphicLine3(data) {
+
+                var ctxStaticsProfessorLine = document.getElementById('static_professor_line').getContext('2d');
+
+                var myLineChart = new Chart(ctxStaticsProfessorLine, {
+                    type: 'line',
+                    data: {
+                        labels: ["0 <","00:07 - 10:00", "10:00 - 13:00", "13:00 >"],
+                        datasets: [{
+                            label: 'Faltas',
+                            backgroundColor: 'rgb(53,144,243)',
+                            borderColor: 'rgb(53,144,243)',
+                            data: [0, data.professorSchedulesFaultsData.minusToTen, data.professorSchedulesFaultsData.majorToTenAndMinusToThirteen,
+                                data.professorSchedulesFaultsData.majorToThirteen, (data.professorSchedulesFaultsData.majorToThirteen - 1)],
+                            fill: false,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        title: {
+                            display: true,
+                            text: 'Gráfica que muestra la cantidad de faltas por rangos de horarios.'
+                        },
+                        tooltips: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        hover: {
+                            mode: 'nearest',
+                            intersect: true
+                        },
+                        scales: {
+                            xAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Rangos de horas'
+                                }
+                            }],
+                            yAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Horas'
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+        }
+
 
     </script>
 

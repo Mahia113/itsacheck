@@ -45,3 +45,6 @@ Route::post('/reports/pdf/bycarrer', 'ReportsController@generatePDFCarrer')->nam
 
 Route::post('/reports/pdf/bygroup', 'ReportsController@generatePDFGroup')->name('generate_pdf_group');
 
+Route::post('/reports/pdf/byprofessor', 'ReportsController@generatePDFProfessor')->name('generate_pdf_professor');
+
+

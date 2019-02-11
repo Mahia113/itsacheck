@@ -1,8 +1,9 @@
 <aside class="col-md-3 card">
 
-    <div class="col-md-10 mx-auto aside-margin">
+    <div class="col-md-12 mx-auto aside-margin">
 
-        <h5 class="text-center">Bienvenido {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h5>
+        <h5 class="text-center">Bienvenido</h5>
+        <h5 class="text-center">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h5>
         <h6 class="text-center aside-title-margin">Directivo</h6>
 
         <div id="list-example" class="list-group">

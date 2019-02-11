@@ -13,7 +13,7 @@
                     <div class="col-md-4">
                         <div class="card padding-card">
 
-                            <h5>Faltas totales del dia de hoy</h5>
+                            <h5>Faltas totales del semestre</h5>
 
                             <h1 class="text-center">{{$faults}} / {{$totalRowsInNoAssistance}}</h1>
 
