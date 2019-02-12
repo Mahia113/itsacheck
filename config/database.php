@@ -1,8 +1,9 @@
 <?php
 
 
-$DATABASE_URL = parse_url('mysql://bcc771bd2295bf:da828835@us-cdbr-iron-east-01.cleardb.net/heroku_59b50c324d3dbb4?reconnect=true');
+$DATABASE_URL2 = parse_url('mysql://bcc771bd2295bf:da828835@us-cdbr-iron-east-01.cleardb.net/heroku_59b50c324d3dbb4?reconnect=true');
 
+$DATABASE_URL = parse_url('mysql://bc722273f77b08:9bcd9185@us-cdbr-iron-east-03.cleardb.net/heroku_b3dd0488c05af47?reconnect=true');
 return [
 
     /*
@@ -42,7 +43,7 @@ return [
             'prefix' => '',
         ],
 
-        'mysql' => [
+        /*'mysql' => [
             'driver' => 'mysql',
             'host' => '127.0.0.1',
             'port' => env('DB_PORT', '3306'),
@@ -55,7 +56,22 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
-        ],
+        ],*/
+
+        'mysql' => [
+            'driver' => 'mysql',
+            'host' => $DATABASE_URL["host"],
+            'port' => env('DB_PORT', '3306'),
+            'database' => ltrim($DATABASE_URL["path"], "/"),
+            'username' => $DATABASE_URL["user"],
+            'password' => $DATABASE_URL["pass"],
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+            ],
 
         'pgsql' => [
             'driver' => 'pgsql',
