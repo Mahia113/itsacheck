@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
         // Let's make sure everyone has the same password and
         // let's hash it before the loop, or else our seeder
         // will be too slow.
-        $password = Hash::make('toptal');
+        $password = "basepass";
 
         //User::create([
             //'name' => 'Administrator',
