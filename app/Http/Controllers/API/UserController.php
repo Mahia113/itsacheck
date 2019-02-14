@@ -71,8 +71,8 @@ class UserController extends Controller
     }
 
     public function isValidUser(Request $request){
-        $email = $request->email;
-        $password = $request->password;
+        //$email = $request->email;
+        //$password = $request->password;
 
         $user = User::select('email', 'password')
             ->get();
