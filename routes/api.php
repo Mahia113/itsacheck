@@ -41,6 +41,8 @@ Route::apiResource('subject', 'API\SubjectController');
 
 Route::apiResource('user', 'API\UserController');
 
+Route::post('user/is_valid_user', 'API\UserController@isValidUser');
+
 
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
