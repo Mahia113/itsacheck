@@ -4,9 +4,9 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Administrador;
+use App\Administrator;
 
-class AdministradorController extends Controller
+class AdministratorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        return Administrador::all();
+        return Administrator::all();
     }
 
     /**

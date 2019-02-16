@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::apiResource('article', 'API\ArticleController');
 
 
-Route::apiResource('administrador', 'API\AdministradorController');
+Route::apiResource('administrator', 'API\AdministratorController');
 
 
 Route::apiResource('group', 'API\GroupController');
