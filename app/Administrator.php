@@ -12,7 +12,7 @@ class Administrator extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'email', 'password', 'key',
+        'id','first_name','last_name', 'email', 'password', 'key',
     ];
 
     /**
@@ -20,7 +20,5 @@ class Administrator extends Model
      *
      * @var array
      */
-    protected $hidden = [
-        'password'
-    ];
+    protected $hidden = [];
 }

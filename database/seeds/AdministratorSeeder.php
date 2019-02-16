@@ -23,7 +23,7 @@ class AdministratorSeeder extends Seeder
         // Let's make sure everyone has the same password and
         // let's hash it before the loop, or else our seeder
         // will be too slow.
-        $password = Hash::make('toptal');
+        $password = "basepass";
 
         // And now let's generate a few dozen users for our app:
         for ($i = 0; $i < 2; $i++) {
@@ -35,5 +35,14 @@ class AdministratorSeeder extends Seeder
                 'key' => $faker->bothify('###?#??')
             ]);
         }
+
+        Administrator::create([
+            'first_name' => "José Luis",
+            'last_name' => "López Arreguin",
+            'email' => "joseluis@gmail.com",
+            'password' => "123456",
+            'key' => $faker->bothify('###?#??')
+        ]);
+
     }
 }
