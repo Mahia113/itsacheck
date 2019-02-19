@@ -23,12 +23,14 @@ class NoAssistance extends Migration
           $table->unsignedInteger('schedule_id');
           $table->unsignedInteger('subject_id');
           $table->unsignedInteger('profesor_id');
+          $table->unsignedInteger('user_id');
       });
 
       Schema::table('no_assistances', function($table) {
           $table->foreign('schedule_id')->references('id')->on('schedules');
           $table->foreign('subject_id')->references('id')->on('subjects');
           $table->foreign('profesor_id')->references('id')->on('profesors');
+          $table->foreign('user_id')->references('id')->on('users');
       });
   }
 

@@ -44,5 +44,13 @@ class AdministratorSeeder extends Seeder
             'key' => $faker->bothify('###?#??')
         ]);
 
+        Administrator::create([
+            'first_name' => "Francisco Gamaliel",
+            'last_name' => "Arias Urquieta",
+            'email' => "divisionsistemas@itsa.edu.mx",
+            'password' => "131313",
+            'key' => $faker->bothify('###?#??')
+        ]);
+
     }
 }
