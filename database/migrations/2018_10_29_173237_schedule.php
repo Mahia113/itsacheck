@@ -13,7 +13,6 @@ class Schedule extends Migration
    */
   public function up()
   {
-      //
       Schema::create('schedules', function (Blueprint $table) {
           $table->increments('id')->autoIncrement();
           $table->time('time_start');
@@ -21,10 +20,13 @@ class Schedule extends Migration
           $table->enum('day', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes']);
 
           $table->unsignedInteger('subject_id');
+          $table->unsignedInteger('administrator_id');
       });
 
       Schema::table('schedules', function($table) {
           $table->foreign('subject_id')->references('id')->on('subjects');
+          $table->foreign('administrator_id')->references('id')->on('administrators');
+
       });
   }
 

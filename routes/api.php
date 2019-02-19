@@ -32,6 +32,11 @@ Route::get('no_assistance/by_profesor/{profesor}', 'API\NoAssistanceController@b
 
 Route::get('no_assistance/by_carrrer/{carrer}', 'API\NoAssistanceController@byCarrer');
 
+Route::get('no_assistance/by_user_all/{user}', 'API\NoAssistanceController@byUserAll');
+
+Route::get('no_assistance/by_user_divided/{day}/{user}/{date}', 'API\NoAssistanceController@byUserDivided');
+
+
 
 Route::apiResource('schedule', 'API\ScheduleController');
 

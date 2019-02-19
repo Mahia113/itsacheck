@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -67,6 +68,28 @@ class NoAssistanceController extends Controller
         //$filtered = $profesors->where('profesor_id', $profesor);
 
         //return response()->json($filtered, 200);
+    }
+
+    public function byUserAll($administrator){
+        $no_assistances = NoAssistance::select('assistance', 'time_registered', 'schedule_id', 'subject_id', 'profesor_id', 'administrator_id')
+            ->where('administrator_id', $administrator)
+            ->get();
+
+        return response()->json($no_assistances, 200);
+    }
+
+    public function byUserDivided($day, $administrator, $date){
+        $checked = NoAssistance::select('assistance', 'schedule_id', 'subject_id', 'profesor_id', 'administrator_id')
+            ->where([['administrator_id', $administrator], ['date_registered', $date]])
+            ->count();
+
+        $total = Schedule::select()
+        ->where([['day', $day], ['administrator_id', $administrator]])
+        ->count();
+
+        $no_checked = $total - $checked;
+
+        return response()->json(['total'=>round($total), 'checked'=>$checked, 'no_checked'=>$no_checked], 200);
     }
 
     /**

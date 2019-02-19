@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Administrator;
 use Illuminate\Database\Seeder;
 
 use App\NoAssistance;
@@ -25,18 +25,17 @@ class NoAssistanceSeeder extends Seeder
         $schedules = Schedule::all()->pluck('id');
         $subjects = Subject::all()->pluck('id');
         $profesors = Profesor::all()->pluck('id');
-        $users = User::all()->pluck('id');
+        $administrator = Administrator::all()->pluck('id');
 
         // And now let's generate a few dozen groups for our app:
         for ($i = 0; $i < 700; $i++) {
             NoAssistance::create([
                 'assistance' => $faker->boolean($chanceOfGettingTrue = 70),
-                'time_registered' => $faker->time($format = 'H:i:s', $max = 'now'),
-
+                'date_registered' => $faker->date($format = 'Y-m-d', $max = 'now'),
                 'schedule_id' => $faker->randomElement($schedules),
                 'subject_id' => $faker->randomElement($subjects),
                 'profesor_id' => $faker->randomElement($profesors),
-                'user_id' => $faker->randomElement($users)
+                'administrator_id' => $faker->randomElement($administrator)
             ]);
         }
     }

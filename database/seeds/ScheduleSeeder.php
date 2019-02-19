@@ -1,5 +1,6 @@
 <?php
 
+use App\Administrator;
 use Illuminate\Database\Seeder;
 
 use App\Schedule;
@@ -36,7 +37,10 @@ class ScheduleSeeder extends Seeder
         //following line retrieve all the subjects_ids from DB
         $subjects = Subject::all()->pluck('id');
 
-        for ($i = 0; $i < 75; $i++) {
+        $administrators = Administrator::all()->pluck('id');
+
+
+        for ($i = 0; $i < 800; $i++) {
 
             if($posTimes == 3){
               $posTimes++;
@@ -58,8 +62,8 @@ class ScheduleSeeder extends Seeder
                 'time_start' => $times[$posTimes],
                 'time_end' => $times[$posTimesEnd],
                 'day' => $faker->randomElement($days),
-
-                'subject_id' => $faker->randomElement($subjects)
+                'subject_id' => $faker->randomElement($subjects),
+                'administrator_id' => $faker->randomElement($administrators)
             ]);
 
             $posTimes++;

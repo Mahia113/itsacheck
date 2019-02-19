@@ -13,16 +13,12 @@ class AdministratorSeeder extends Seeder
      */
     public function run()
     {
-        // Let's clear the users table first
-        //User::truncate();
+        //TABLA DE LOS CHECADORES
 
         DB::table('administrators')->delete();
 
         $faker = \Faker\Factory::create();
 
-        // Let's make sure everyone has the same password and
-        // let's hash it before the loop, or else our seeder
-        // will be too slow.
         $password = "basepass";
 
         // And now let's generate a few dozen users for our app:
@@ -39,7 +35,7 @@ class AdministratorSeeder extends Seeder
         Administrator::create([
             'first_name' => "José Luis",
             'last_name' => "López Arreguin",
-            'email' => "joseluis@gmail.com",
+            'email' => "joseluischecador@gmail.com",
             'password' => "123456",
             'key' => $faker->bothify('###?#??')
         ]);
@@ -47,7 +43,7 @@ class AdministratorSeeder extends Seeder
         Administrator::create([
             'first_name' => "Francisco Gamaliel",
             'last_name' => "Arias Urquieta",
-            'email' => "divisionsistemas@itsa.edu.mx",
+            'email' => "divisionsistemaschecador@itsa.edu.mx",
             'password' => "131313",
             'key' => $faker->bothify('###?#??')
         ]);
