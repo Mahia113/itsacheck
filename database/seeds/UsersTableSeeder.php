@@ -39,5 +39,22 @@ class UsersTableSeeder extends Seeder
                 'password' => $password,
             ]);
         }
+
+        User::create([
+            'first_name' => "José Luis",
+            'last_name' => "López",
+            'last_name2' => "Arreguin",
+            'email' => "joseluis@gmail.com",
+            'password' => "123456",
+        ]);
+
+        User::create([
+            'first_name' => "Francisco Gamaliel",
+            'last_name' => "Arias",
+            'last_name2' => "Urquieta",
+            'email' => "divisionsistemas@itsa.edu.mx",
+            'password' => "131313",
+        ]);
+
     }
 }
