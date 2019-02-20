@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Administrator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -86,7 +87,7 @@ class UserController extends Controller
             if($email == $emailUserBD){
                 if($hasher->check($password, $value->password)){
                     $valid = true;
-                    $userData = User::select()
+                    $userData = Administrator::select()
                         ->where('email', $emailUserBD)
                         ->get();
                 }

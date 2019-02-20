@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccf5b63f-7913-4a0e-952c-a2a77de8b55f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +61,7 @@
           <entry key="Blade" value="14317" />
           <entry key="CSS" value="457" />
           <entry key="JSON" value="10" />
-          <entry key="PHP" value="16531" />
+          <entry key="PHP" value="16537" />
           <entry key="PLAIN_TEXT" value="12" />
         </counts>
       </usages-collector>
@@ -69,11 +69,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/database.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="45" column="10" selection-start-line="45" selection-start-column="8" selection-end-line="58" selection-end-column="12" />
+            <state relative-caret-position="239">
+              <caret line="68" column="35" lean-forward="true" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -87,12 +87,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="89" column="38" selection-start-line="89" selection-start-column="38" selection-end-line="89" selection-end-column="38" />
+            <state relative-caret-position="483">
+              <caret line="92" column="17" lean-forward="true" selection-start-line="92" selection-start-column="17" selection-end-line="92" selection-end-column="17" />
               <folding>
+                <element signature="e#44#66#0#PHP" expanded="true" />
                 <element signature="e#171#272#0#PHP" />
                 <element signature="e#344#503#0#PHP" />
                 <element signature="e#508#652#0#PHP" />
@@ -212,8 +213,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/API/NoAssistanceController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" />
         <option value="$PROJECT_DIR$/config/database.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" />
       </list>
     </option>
   </component>
@@ -451,12 +452,12 @@
       <workItem from="1546552191140" duration="226407000" />
       <workItem from="1549908694852" duration="406000" />
       <workItem from="1549909225398" duration="19601000" />
-      <workItem from="1550338100120" duration="16057000" />
+      <workItem from="1550338100120" duration="16651000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="301996000" />
+    <option name="totallyTimeSpent" value="302590000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1440" height="832" extended-state="6" />
@@ -809,6 +810,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="68" column="35" lean-forward="true" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/NoAssistanceController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -829,9 +837,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="89" column="38" selection-start-line="89" selection-start-column="38" selection-end-line="89" selection-end-column="38" />
+        <state relative-caret-position="483">
+          <caret line="92" column="17" lean-forward="true" selection-start-line="92" selection-start-column="17" selection-end-line="92" selection-end-column="17" />
           <folding>
+            <element signature="e#44#66#0#PHP" expanded="true" />
             <element signature="e#171#272#0#PHP" />
             <element signature="e#344#503#0#PHP" />
             <element signature="e#508#652#0#PHP" />
@@ -841,13 +850,6 @@
             <element signature="e#1051#1210#0#PHP" />
             <element signature="e#1216#1350#0#PHP" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="45" column="10" selection-start-line="45" selection-start-column="8" selection-end-line="58" selection-end-column="12" />
         </state>
       </provider>
     </entry>
