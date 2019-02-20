@@ -46,6 +46,8 @@ Route::apiResource('subject', 'API\SubjectController');
 
 Route::apiResource('user', 'API\UserController');
 
+Route::get('user/verify_user/{email}/{password}/', 'API\UserController@validateUser');
+
 
 Route::get('user/valid/', 'API\UserController@index');
 

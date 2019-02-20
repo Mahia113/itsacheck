@@ -70,13 +70,30 @@ class UserController extends Controller
         return response()->json(null, 204);
     }
 
-    public function isValidUser(Request $request){
-        //$email = $request->email;
-        //$password = $request->password;
+    public function validateUser($email, $password){
 
-        $user = User::select('email', 'password')
-            ->get();
+        $hasher = app('hash');
 
-        return "Hola";
+        $valid = false;
+        $emailUserBD = null;
+        $users = User::all();
+        $userData = null;
+
+        foreach ($users as $user => $value){
+
+            $emailUserBD = $value->email;
+
+            if($email == $emailUserBD){
+                if($hasher->check($password, $value->password)){
+                    $valid = true;
+                    $userData = User::select()
+                        ->where('email', $emailUserBD)
+                        ->get();
+                }
+            }
+
+        }
+
+        return response()->json(['valid'=>$valid, 'user_data'=>$userData], 200);
     }
 }
