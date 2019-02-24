@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Carrer;
+use App\Group;
+use App\Profesor;
 use App\Schedule;
+use App\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
