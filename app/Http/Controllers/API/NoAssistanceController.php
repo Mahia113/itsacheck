@@ -130,7 +130,7 @@ class NoAssistanceController extends Controller
         return response()->json(['totalDeRegistros'=>$registros, 'asistencias'=>$assistances, 'faltas'=>$registros], 200);
     }
 
-    public function general(){
+    public function generalReport(){
         $registros = NoAssistance::select()
             ->count();
 
