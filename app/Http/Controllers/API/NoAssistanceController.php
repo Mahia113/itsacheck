@@ -114,4 +114,19 @@ class NoAssistanceController extends Controller
     {
         //
     }
+
+    public function byDay($day){
+
+        $registros = NoAssistance::select()
+            ->where('date_registered', $day)
+            ->count();
+
+        $faults = NoAssistance::select()
+            ->where('date_registered', $day)
+            ->count();
+
+        $assistances = $registros - $faults;
+
+        return response()->json(['totalDeRegistros'=>$registros, 'asistencias'=>$assistances, 'faltas'=>$registros], 200);
+    }
 }

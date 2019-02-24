@@ -17,7 +17,7 @@ class Schedule extends Migration
           $table->increments('id')->autoIncrement();
           $table->time('time_start');
           $table->time('time_end');
-          $table->enum('day', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes']);
+          $table->enum('day', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']);
 
           $table->unsignedInteger('subject_id');
           $table->unsignedInteger('administrator_id');

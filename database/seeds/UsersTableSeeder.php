@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -34,6 +35,14 @@ class UsersTableSeeder extends Seeder
                 'password' => $password,
             ]);
         }
+
+        User::create([
+            'first_name' => "Francisco Gamaliel",
+            'last_name' => "Arias",
+            'last_name2' => "Urquieta",
+            'email' => "divisionsistemas@itsa.edu.mx",
+            'password' => Hash::make("131313"),
+        ]);
 
     }
 }
