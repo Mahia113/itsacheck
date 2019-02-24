@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Carrer;
 use App\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -143,4 +144,86 @@ class NoAssistanceController extends Controller
         return response()->json(['totalDeRegistros'=>$registros, 'asistencias'=>$assistances, 'faltas'=>$faults], 200);
 
     }
+
+    public function carrierReport(){
+
+        $carriers = Carrer::select('id')
+            ->get();
+
+        foreach($carriers as $carrier => $value){
+            $carrier_id = $value->id;
+            $carrerasData[] = ['carrierData'=>$this->carrierData($carrier_id),
+                'carrierRows' => $this->totalRowsByCarrier($carrier_id),
+                'carriersFaults' => $this->totalFaultsByCarrier($carrier_id),
+                'carriersAssistances' => $this->totalAssistancesByCarrier($carrier_id)];
+        }
+
+        /*return response()->json( ['carrierData'=>$this->carrierData($carrier_id),
+            'carrierRows' => $this->totalRowsByCarrier($carrier_id),
+            'carriersFaults' => $this->totalFaultsByCarrier($carrier_id),
+            'carriersAssistances' => $this->totalAssistancesByCarrier($carrier_id)] );*/
+
+        return response()->json($carrerasData, 200);
+    }
+
+    public function carrierData($carrier_id){
+        $carrerInfo = Carrer::select('name', 'alias', 'key')
+            ->where('id', $carrier_id)
+            ->get();
+
+        $groups = Group::where('carrer_id', $carrier_id)->count();
+
+        $professors = Profesor::where('carrer_id', $carrier_id)->count();
+
+        $turns = 2;
+
+        $carrierData = array($carrerInfo, $groups, $professors, $turns);
+
+        return $carrierData;
+    }
+
+    public function totalRowsByCarrier($carrier_id){
+
+        $assistances = $this->totalAssistancesByCarrier($carrier_id);
+        $faults = $this->totalFaultsByCarrier($carrier_id);
+
+        return $assistances + $faults;
+    }
+
+    public function totalFaultsByCarrier($carrier_id){
+        //Faults
+        $subjectsWithFaults = NoAssistance::select('subject_id')
+            ->where('assistance', false)
+            ->get();
+
+        foreach ($subjectsWithFaults as $subject => $valueFault){
+            $subjectsIDsWithFaults[] = "$valueFault->subject_id";
+        }
+
+        $carrer_faults = Subject::select('id', 'name', 'carrer_id')
+            ->where('carrer_id', $carrier_id)
+            ->whereIn('id', $subjectsIDsWithFaults)
+            ->count();
+
+        return $carrer_faults;
+    }
+
+    public function totalAssistancesByCarrier($carrier_id){
+        // Assistances
+        $subjectsWithAssistances = NoAssistance::select('subject_id')
+            ->where('assistance', true)
+            ->get();
+
+        foreach ($subjectsWithAssistances as $subject => $valueAssistance){
+            $subjectsIDsWithAssistances[] = "$valueAssistance->subject_id";
+        }
+
+        $carrer_assitances = Subject::select('name', 'carrer_id')
+            ->where('carrer_id', $carrier_id)
+            ->whereIn('id', $subjectsIDsWithAssistances)
+            ->count();
+
+        return $carrer_assitances;
+    }
+
 }
