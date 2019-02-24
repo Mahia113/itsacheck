@@ -129,4 +129,18 @@ class NoAssistanceController extends Controller
 
         return response()->json(['totalDeRegistros'=>$registros, 'asistencias'=>$assistances, 'faltas'=>$registros], 200);
     }
+
+    public function general(){
+        $registros = NoAssistance::select()
+            ->count();
+
+        $faults = NoAssistance::select()
+            ->where('assistance', false)
+            ->count();
+
+        $assistances = $registros - $faults;
+
+        return response()->json(['totalDeRegistros'=>$registros, 'asistencias'=>$assistances, 'faltas'=>$registros], 200);
+
+    }
 }
