@@ -140,7 +140,7 @@ class NoAssistanceController extends Controller
 
         $assistances = $registros - $faults;
 
-        return response()->json(['totalDeRegistros'=>$registros, 'asistencias'=>$assistances, 'faltas'=>$registros], 200);
+        return response()->json(['totalDeRegistros'=>$registros, 'asistencias'=>$assistances, 'faltas'=>$faults], 200);
 
     }
 }
