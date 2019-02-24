@@ -41,7 +41,7 @@ Route::get('report/by_day/{date}', 'API\NoAssistanceController@byDay');
 
 Route::get('report/general/', 'API\NoAssistanceController@generalReport');
 
-Route::get('report/carrier/{carrier_id}', 'API\NoAssistanceController@carrierReport');
+Route::get('report/carrier/', 'API\NoAssistanceController@carrierReport');
 
 
 
