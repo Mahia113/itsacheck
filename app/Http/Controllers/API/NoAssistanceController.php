@@ -180,7 +180,7 @@ class NoAssistanceController extends Controller
 
         $turns = 2;
 
-        $carrierData = array($carrerInfo,"Grupos" =>$groups, "Profesores"=>$professors, "Turnos"=>$turns);
+        $carrierData = array("info"=>$carrerInfo,"Grupos" =>$groups, "Profesores"=>$professors, "Turnos"=>$turns);
 
         return $carrierData;
     }
