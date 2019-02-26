@@ -47,6 +47,25 @@ class NoAssistanceController extends Controller
         return NoAssistance::find($no_assistance);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
     public function bySubject($subject)
     {
         $subjects = NoAssistance::all();
@@ -65,7 +84,7 @@ class NoAssistanceController extends Controller
         return response()->json($filtered, 200);
     }
 
-    public function byCarrer($profesor)
+    public function byCarrier($profesor)
     {
         //$profesors = NoAssistance::all();
 
@@ -96,24 +115,29 @@ class NoAssistanceController extends Controller
         return response()->json(['total'=>round($total), 'checked'=>$checked, 'no_checked'=>$no_checked], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function schedules($time_registered, $administrator_id){
+
+        $idsArray = null;
+
+        $registered = NoAssistance::select('schedule_id')
+            ->where([['administrator_id', $administrator_id], ['date_registered', $time_registered]])
+            ->get();
+
+        foreach($registered as $register => $value){
+            $subject_id = $value->schedule_id;
+            $idsArray[] = $subject_id;
+        }
+
+        $schedules = Schedule::select()
+            ->where('administrator_id', $administrator_id)
+            ->whereNotIn('id', $idsArray)
+            ->get();
+
+
+
+        return $schedules;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
