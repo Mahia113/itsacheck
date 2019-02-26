@@ -115,9 +115,9 @@ class NoAssistanceController extends Controller
         return response()->json(['total'=>round($total), 'checked'=>$checked, 'no_checked'=>$no_checked], 200);
     }
 
-    public function schedules($time_registered, $administrator_id){
+    public function schedules($time_registered, $administrator_id, $day){
 
-        $idsArray = null;
+        $idsArray = [];
 
         $registered = NoAssistance::select('schedule_id')
             ->where([['administrator_id', $administrator_id], ['date_registered', $time_registered]])
@@ -129,13 +129,11 @@ class NoAssistanceController extends Controller
         }
 
         $schedules = Schedule::select()
-            ->where('administrator_id', $administrator_id)
+            ->where([['administrator_id', $administrator_id], ['day', $day]])
             ->whereNotIn('id', $idsArray)
             ->get();
 
-
-
-        return $schedules;
+        return response()->json(["schedules"=>$schedules] ,200);
     }
 
     public function destroy($id)
@@ -184,11 +182,6 @@ class NoAssistanceController extends Controller
                 'carriersFaults' => $this->totalFaultsByCarrier($carrier_id),
                 'carriersAssistances' => $this->totalAssistancesByCarrier($carrier_id)];
         }
-
-        /*return response()->json( ['carrierData'=>$this->carrierData($carrier_id),
-            'carrierRows' => $this->totalRowsByCarrier($carrier_id),
-            'carriersFaults' => $this->totalFaultsByCarrier($carrier_id),
-            'carriersAssistances' => $this->totalAssistancesByCarrier($carrier_id)] );*/
 
         return response()->json($carrerasData, 200);
     }

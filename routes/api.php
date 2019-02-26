@@ -37,7 +37,7 @@ Route::get('no_assistance/by_user_all/{user}', 'API\NoAssistanceController@byUse
 Route::get('no_assistance/by_user_divided/{day}/{user}/{date}', 'API\NoAssistanceController@byUserDivided');
 
 
-Route::get('no_assistance/schedules/{time_registered}/{administrator_id}', 'API\NoAssistanceController@schedules');
+Route::get('no_assistance/schedules/{time_registered}/{administrator_id}/{day}', 'API\NoAssistanceController@schedules');
 
 
 Route::get('report/by_day/{date}', 'API\NoAssistanceController@byDay');
