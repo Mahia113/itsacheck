@@ -146,11 +146,17 @@ class NoAssistanceController extends Controller
                     $professor = Profesor::select('first_name', 'last_name', 'last_name2')
                         ->where('id', $value2->profesor_id)
                         ->get();
+
+                    $carrier = Carrer::select()
+                        ->where('id', $value2->carrer_id)
+                        ->get();
+
+                    $carrierName = $carrier[0]->name;
                     $nameProfessor = $professor[0]->first_name." ".$professor[0]->last_name." ".$professor[0]->last_name2;
 
                     $scheduleData = ["schedule_id"=>$value->id, "time_start"=>$value->time_start, "time_end"=>$value->time_end, "day"=>$value->day,
                                          "subject_id"=>$value2->id, "subject_name"=>$value2->name, "subject_key"=>$value2->key, "subject_carrier_id"=>$value2->carrer_id,
-                                            "subject_professor_name"=>$nameProfessor];
+                                            "subject_carrier_name"=>$carrierName, "subject_professor_id"=>$value2->profesor_id, "subject_professor_name"=>$nameProfessor];
 
                     $schedulesData [] = $scheduleData;
                 }
