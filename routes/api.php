@@ -36,7 +36,6 @@ Route::get('no_assistance/by_user_all/{user}', 'API\NoAssistanceController@byUse
 
 Route::get('no_assistance/by_user_divided/{day}/{user}/{date}', 'API\NoAssistanceController@byUserDivided');
 
-
 Route::get('no_assistance/schedules/{time_registered}/{administrator_id}/{day}', 'API\NoAssistanceController@schedules');
 
 
@@ -56,7 +55,6 @@ Route::apiResource('subject', 'API\SubjectController');
 Route::apiResource('user', 'API\UserController');
 
 Route::get('user/verify_user/{email}/{password}/', 'API\UserController@validateUser');
-
 
 Route::get('user/valid/', 'API\UserController@index');
 

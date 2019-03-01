@@ -33,7 +33,8 @@ class NoAssistanceController extends Controller
     public function store(Request $request)
     {
         $no_assistance = NoAssistance::create($request->all());
-        return response()->json($no_assistance, 201);
+
+        return response()->json($request, 201);
     }
 
     /**

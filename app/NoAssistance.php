@@ -12,6 +12,6 @@ class NoAssistance extends Model
      * @var array
      */
     protected $fillable = [
-        'assistance', 'time_registered'
+        'assistance', 'date_registered', 'schedule_id', 'subject_id', 'profesor_id', 'administrator_id'
     ];
 }
