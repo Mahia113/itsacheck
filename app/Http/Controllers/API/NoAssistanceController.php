@@ -34,7 +34,7 @@ class NoAssistanceController extends Controller
     {
         $no_assistance = NoAssistance::create($request->all());
 
-        return response()->json($request, 201);
+        return response()->json($no_assistance, 201);
     }
 
     /**
